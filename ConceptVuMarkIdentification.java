@@ -19,22 +19,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 /**
- * This OpMode illustrates the basics of using the Vuforia engine to determine
- * the identity of Vuforia VuMarks encountered on the field. The code is structured as
- * a LinearOpMode. It shares much structure with {@link ConceptVuforiaNavigation}; we do not here
- * duplicate the core Vuforia documentation found there, but rather instead focus on the
- * differences between the use of Vuforia for navigation vs VuMark identification.
- *
  * @see ConceptVuforiaNavigation
  * @see VuforiaLocalizer
  * @see VuforiaTrackableDefaultListener
  * see  ftc_app/doc/tutorial/FTC_FieldCoordinateSystemDefinition.pdf
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
- *
- * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
- * is explained in {@link ConceptVuforiaNavigation}.
  */
 
 @Autonomous(name="Concept: VuMark Id", group ="Concept")
@@ -58,38 +46,81 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
+        
+        int stepCounter = 0;
 
         waitForStart(); //waits for the play button! NECESSARY!
 
         relicTrackables.activate();
+
         while (opModeIsActive()) {
+            
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
-            if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
-                telemetry.addData("VuMark", "%s visible", vuMark);
-                
-                //start pose section - not necessary
-                    OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
-                    telemetry.addData("Pose", format(pose));
-                    if (pose != null) {
-                        VectorF trans = pose.getTranslation();
-                        Orientation rot = Orientation.getOrientation(pose, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
+            if (stepCounter == 0){
+                while(false){
+                    if (vuMark != RelicRecoveryVuMark.UNKNOWN ) {
+                        telemetry.addData("VuMark", "%s visible", vuMark);
+                        
+                        //start pose section - not necessary
+                            OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
+                            telemetry.addData("Pose", format(pose));
+                            if (pose != null) {
+                                VectorF trans = pose.getTranslation();
+                                Orientation rot = Orientation.getOrientation(pose, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
 
-                        // Extract the X, Y, and Z components of the offset of the target relative to the robot
-                        double tX = trans.get(0);
-                        double tY = trans.get(1);
-                        double tZ = trans.get(2);
+                                // Extract the X, Y, and Z components of the offset of the target relative to the robot
+                                double tX = trans.get(0);
+                                double tY = trans.get(1);
+                                double tZ = trans.get(2);
 
-                        // Extract the rotational components of the target relative to the robot
-                        double rX = rot.firstAngle;
-                        double rY = rot.secondAngle;
-                        double rZ = rot.thirdAngle;
+                                // Extract the rotational components of the target relative to the robot
+                                double rX = rot.firstAngle;
+                                double rY = rot.secondAngle;
+                                double rZ = rot.thirdAngle;
+                            }
+                        //end pose section
+                        stepCounter++;
+
                     }
-                //end pose section
+                    else {
+                        telemetry.addData("VuMark", "not visible");
+                    }
+                    telemetry.update();
+                }
+            } else if (stepCounter==1){
+                while (false){
+                    telemetry.addData("Step 1","Moving Horizontally 6 inches");
+                    telemetry.update();
+                    //moves horizontal 6 inches (left or right)
+                }
+                stepCounter++;
+            } else if (stepCounter==2) {
+                while (false){
+                    telemetry.addData("Step 2","Moving Vertically");
+                    telemetry.update();
+                    //moves vertical 24 inches or 0 inches
+                }
+                stepCounter++;
+            } else if (stepCounter==3){
+                while (false){
+                    telemetry.addData("Step 3","Moving into %s shelving position",vuMark);
+                    telemetry.update();
+                    //moves to LEFT, RIGHT, or CENTER position
+                }
+                stepCounter++;
+            } else if (stepCounter==3){
+                while(false){
+                    telemetry.addData("Step 4","Placing block in to shelf");
+                    telemetry.update();
+                }
+                stepCounter++;
+            } else if (stepCounter==4){
+                while(false){
+                    telemetry.addData("Step 5","Parking robot (Line following/%s Compensation",vuMark);
+                    telemetry.update();
+                }
             }
-            else {
-                telemetry.addData("VuMark", "not visible");
-            }
-            telemetry.update();
+
         }
     }
 
