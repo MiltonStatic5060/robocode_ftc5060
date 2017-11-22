@@ -102,7 +102,6 @@ public class TeleOpTemplate extends OpMode {
 
         double powRight =  Range.clip( left_y + right_y + left_x + right_x , -1 , 1 );
         double powLeft =   Range.clip( left_y + right_y - left_x - right_x , -1 , 1 );
-        
         double powRight1 = Range.clip( left_y + right_y - left_x + right_x , -1 , 1 );
         double powLeft1 =  Range.clip( left_y + right_y + left_x - right_x , -1 , 1 );
 
