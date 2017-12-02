@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Robot type="FirstInspires-FTC">
+    <LegacyModuleController name="Legacy Module 1" serialNumber="AL00XTYP">
+        <MotorController name="m4" port="0">
+            <Motor name="rightF" port="1" />
+        </MotorController>
+        <LightSensor name="light1" port="1" />
+        <LightSensor name="light2" port="2" />
+        <ServoController name="s1" port="3">
+            <Servo name="gate1" port="1" />
+            <Servo name="gate2" port="2" />
+        </ServoController>
+        <UltrasonicSensor name="ultra2but" port="4" />
+        <UltrasonicSensor name="ultra2" port="5" />
+    </LegacyModuleController>
+    <LegacyModuleController name="Legacy Module 2" serialNumber="AL00YFE3">
+        <MotorController name="m1" port="0">
+            <Motor name="sweeper" port="1" />
+            <Motor name="conveyor" port="2" />
+        </MotorController>
+        <MotorController name="m2" port="1">
+            <Motor name="leftB" port="1" />
+            <Motor name="leftF" port="2" />
+        </MotorController>
+        <MotorController name="m3" port="2">
+            <Motor name="catapult" port="1" />
+            <Motor name="rightB" port="2" />
+        </MotorController>
+        <UltrasonicSensor name="ultra2arm" port="4" />
+        <UltrasonicSensor name="ultra1" port="5" />
+    </LegacyModuleController>
+</Robot>
