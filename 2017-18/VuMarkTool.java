@@ -29,6 +29,7 @@
 package org.firstinspires.ftc.teamcode.competition2017;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.*;
@@ -45,7 +46,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-
+import org.firstinspires.ftc.robotcore.external.*;
 /**
  * This OpMode illustrates the basics of using the Vuforia engine to determine
  * the identity of Vuforia VuMarks encountered on the field. The code is structured as
@@ -67,7 +68,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 //@Autonomous(name="VuMark Front Id", group ="Competition2017-18")
 //@Disabled
-public class VuMarkTool extends LinearOpMode {
+public class VuMarkTool {
 
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
@@ -83,7 +84,7 @@ public class VuMarkTool extends LinearOpMode {
     Telemetry telemetry = null;
 
     public VuMarkTool(HardwareMap hwMap, Telemetry telemetry){
-        this.haredwareMap = hwMap;
+        this.hardwareMap = hwMap;
         this.telemetry = telemetry;
     }
 

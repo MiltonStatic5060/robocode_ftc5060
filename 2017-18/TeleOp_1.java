@@ -28,24 +28,24 @@ import com.qualcomm.robotcore.hardware.*;
  * UltrasonicSensor
  */
 
-import VuMarkTool;
+
 
 @TeleOp(name = "TeleOp1", group = "Competition2017-18")
 //@Autonomous(name = "Concept: NullOp", group = "Concept")
 //@Disabled
-public class TeleOpTemplate extends OpMode {
-    VuMarkTool vuTool;
+public class TeleOp_1 extends OpMode {
+    VuMarkTool vuTool = null;
 
     @Override
     public void init(){
         vuTool = new VuMarkTool(hardwareMap,telemetry);
-        vuTool.runOpMode(true);
+        vuTool.runOpMode();
     }
     @Override
     public void loop(){
-        runLoop();
+        vuTool.runLoop();
     }
     public void stop(){
-        endRun();
+        vuTool.endRun();
     }
 }
